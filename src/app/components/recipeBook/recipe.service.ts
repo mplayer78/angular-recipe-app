@@ -36,6 +36,11 @@ export class RecipeService {
     return [...this.recipes];
   }
 
+  getRecipe(paramId: number): Recipe {
+    const focusRecipe = this.recipes.filter((v) => paramId === v.id)[0];
+    return focusRecipe;
+  }
+
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
     this.shoppingService.addIngredients(ingredients);
   }

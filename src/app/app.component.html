@@ -1,3 +1,8 @@
 <app-header (showRecipe)="onNavigationRequest($event)"></app-header>
-<app-recipe *ngIf="recipeVisible"></app-recipe>
-<app-shopping *ngIf="shoppingVisible"></app-shopping>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

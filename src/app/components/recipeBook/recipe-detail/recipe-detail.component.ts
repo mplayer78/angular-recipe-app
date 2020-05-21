@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Recipe } from '../recipe/recipe.model';
 import { RecipeService } from '../recipe.service';
 import { ShoppingService } from '../../shoppingList/shopping.service';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -11,11 +12,14 @@ import { ShoppingService } from '../../shoppingList/shopping.service';
 export class RecipeDetailComponent implements OnInit {
   focusRecipe: Recipe;
 
-  constructor(private recipeService: RecipeService) {}
+  constructor(
+    private recipeService: RecipeService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.recipeService.focusRecipe.subscribe((recipe: Recipe) => {
-      this.focusRecipe = recipe;
+    this.route.params.subscribe((params: Params) => {
+      this.focusRecipe = this.recipeService.getRecipe(1);
     });
   }
 

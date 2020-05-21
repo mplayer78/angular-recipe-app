@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Recipe } from '../recipe/recipe.model';
 import { RecipeService } from '../recipe.service';
+import { ShoppingService } from '../../shoppingList/shopping.service';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -16,6 +17,11 @@ export class RecipeDetailComponent implements OnInit {
     this.recipeService.focusRecipe.subscribe((recipe: Recipe) => {
       this.focusRecipe = recipe;
     });
-    console.log('this.focusRecipe', this.focusRecipe);
+  }
+
+  addToShoppingList() {
+    this.recipeService.addIngredientsToShoppingList(
+      this.focusRecipe.ingredients
+    );
   }
 }
